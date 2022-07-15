@@ -28,7 +28,6 @@ public class PlantLogic : MonoBehaviour
     {
         if (_isReady && other.gameObject.GetComponent<Sickle>())
         {
-            Debug.Log("!");
             Cut();
             Instantiate(_gardenData.PlantBlock, _spawnPoint);
         }

@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class PlantBlockLogic : MonoBehaviour
 {
     [SerializeField] private PlantBlockAnimationData _animationData;
 
     private Tween _animationTween;
+
+    public event Action OnAnimationComplete;
     private void OnEnable()
     {
-        Vector3 dropPoint = new Vector3(Random.Range(-_animationData.DropRadius.x, _animationData.DropRadius.x), _animationData.DropRadius.y, Random.Range(-_animationData.DropRadius.z, _animationData.DropRadius.z));
+        Vector3 dropPoint = new Vector3(UnityEngine.Random.Range(-_animationData.DropRadius.x, _animationData.DropRadius.x), _animationData.DropRadius.y, UnityEngine.Random.Range(-_animationData.DropRadius.z, _animationData.DropRadius.z));
         DropAnimation(dropPoint);
     }
     private void DropAnimation(Vector3 dropPoint) 
@@ -23,6 +26,10 @@ public class PlantBlockLogic : MonoBehaviour
         _animationTween?.Kill();
         transform.SetParent(parent);
         _animationTween = transform.DOLocalMove(new Vector3(0, count * transform.localScale.y, 0), _animationData.dropDuration);
-        _animationTween.OnComplete(() => transform.localRotation = Quaternion.Euler(Vector3.zero));
+        _animationTween.OnComplete(() => 
+        {
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
+            OnAnimationComplete?.Invoke();
+            });
     }
 }

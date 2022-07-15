@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 6205297774475231080}
   - component: {fileID: 6964650306069820930}
   - component: {fileID: 6753633166746104437}
+  - component: {fileID: 8529510510026170466}
   m_Layer: 0
   m_Name: Vilagger
   m_TagString: Untagged
@@ -249,7 +250,6 @@ Transform:
   m_Children:
   - {fileID: 37550569951044123}
   - {fileID: 158503844034260884}
-  - {fileID: 2560669581917988985}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 119.785, z: 0}
@@ -298,8 +298,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9b22e418e541b40a19128b65f563fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectorPoint: {fileID: 2560669581917988985}
-  _maxStack: 40
+  _stack: {fileID: 2560669581917988985}
+  _unloadDelay: 0.1
+  _playerData: {fileID: 11400000, guid: 3c0e88d86000b6847a495f86f7cd746b, type: 2}
+  _stackUI: {fileID: 0}
+--- !u!195 &8529510510026170466
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843959883871272872}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1044528213551033528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1064,7 @@ Transform:
   m_LocalPosition: {x: -0.0011690584, y: 0.10681038, z: 0.0037344173}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2560669581917988985}
   - {fileID: 3241930440601925560}
   m_Father: {fileID: 37550569951044123}
   m_RootOrder: 2
@@ -1135,7 +1160,7 @@ Transform:
   m_Children:
   - {fileID: 1240278144450186050}
   m_Father: {fileID: 9028990942343709096}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7929279790991369402
 GameObject:
@@ -1501,12 +1526,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9212218369312919308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.931, z: -0.326}
+  m_LocalRotation: {x: -5.293956e-23, y: -0, z: 9.237056e-13, w: 1}
+  m_LocalPosition: {x: 0, y: -0.064737074, z: -0.34266144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 71364516782531858}
-  m_RootOrder: 2
+  m_Father: {fileID: 9028990942343709096}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4431719660977676737
 PrefabInstance:
