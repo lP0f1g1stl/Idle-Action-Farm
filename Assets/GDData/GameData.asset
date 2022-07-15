@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f706877aa2451b244bc8623771b07c1e, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  _money: 405
+  _money: 0
   _maxStack: 40
   _blockPrice: 15
