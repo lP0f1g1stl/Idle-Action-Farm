@@ -6,8 +6,11 @@ using UnityEngine;
 public class PlantBlockAnimationData : ScriptableObject
 {
     [SerializeField] private Vector3 _dropRadius;
-    [SerializeField] private float _dropDuration;
+    [Space]
+    [SerializeField] private float _scaleMultiplier;
+    [SerializeField] private float _animationDuration;
 
     public Vector3 DropRadius => _dropRadius;
-    public float dropDuration => _dropDuration;
+    public float ScaleMultiplier => _scaleMultiplier;
+    public float AnimationDuration => _animationDuration;
 }

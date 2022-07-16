@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stack: {fileID: 2560669581917988985}
-  _unloadDelay: 0.1
-  _playerData: {fileID: 11400000, guid: 3c0e88d86000b6847a495f86f7cd746b, type: 2}
+  _unloadLogic: {fileID: 0}
+  _gameData: {fileID: 11400000, guid: 3c0e88d86000b6847a495f86f7cd746b, type: 2}
   _stackUI: {fileID: 0}
 --- !u!195 &8529510510026170466
 NavMeshAgent:

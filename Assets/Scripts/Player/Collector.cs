@@ -7,9 +7,7 @@ public class Collector : MonoBehaviour
     [SerializeField] private Transform _stack;
     [SerializeField] private UnloadLogic _unloadLogic;
     [Space]
-    [SerializeField] private float _unloadDelay;
-    [Space]
-    [SerializeField] private GameData _playerData;
+    [SerializeField] private GameData _gameData;
     [SerializeField] private StackUI _stackUI;
 
     private bool _unloading;
@@ -18,15 +16,13 @@ public class Collector : MonoBehaviour
 
     private void Start()
     {
-        _stackUI.ChangeProgressBar(_plantBlocks.Count, _playerData.MaxStack);
+        _stackUI.ChangeProgressBar(_plantBlocks.Count, _gameData.MaxStack);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!_unloading && other.TryGetComponent(out PlantBlockLogic plantBlock) && _plantBlocks.Count < _playerData.MaxStack) 
+        if (!_unloading && other.TryGetComponent(out PlantBlockLogic plantBlock) && _plantBlocks.Count < _gameData.MaxStack) 
         {
-            plantBlock.CollectAnimation(_stack, _plantBlocks.Count);
-            _plantBlocks.Push(plantBlock);
-            _stackUI.ChangeProgressBar(_plantBlocks.Count, _playerData.MaxStack);
+            Load(plantBlock);
         }
         else if(other.TryGetComponent(out UnloadAnimationTrigger unloadPlace))
         {
@@ -42,6 +38,19 @@ public class Collector : MonoBehaviour
             _unloading = false;
         }
     }
+    private void Load(PlantBlockLogic plantBlock)
+    {
+
+        plantBlock.CollectAnimation(_stack, CalculatePosInStack());
+        plantBlock.ChangeScale();
+        _plantBlocks.Push(plantBlock);
+        _stackUI.ChangeProgressBar(_plantBlocks.Count, _gameData.MaxStack);
+    }
+    private Vector3 CalculatePosInStack() 
+    {
+        float xPos = (-_gameData.LineLength + 1)/2 + (_plantBlocks.Count % _gameData.LineLength);
+        return new Vector3(xPos, Mathf.CeilToInt(_plantBlocks.Count / _gameData.LineLength));
+    }
 
     private IEnumerator Unload(Transform collectorPoint) 
     {
@@ -49,9 +58,10 @@ public class Collector : MonoBehaviour
         {
             PlantBlockLogic plantBlock = _plantBlocks.Pop();
             _unloadLogic.AddBlock(plantBlock);
-            plantBlock.CollectAnimation(collectorPoint, 0);
-            _stackUI.ChangeProgressBar(_plantBlocks.Count, _playerData.MaxStack);
-            yield return new WaitForSeconds(_unloadDelay);
+            plantBlock.CollectAnimation(collectorPoint, Vector3.zero);
+            plantBlock.RevertScale();
+            _stackUI.ChangeProgressBar(_plantBlocks.Count, _gameData.MaxStack);
+            yield return new WaitForSeconds(_gameData.UnloadDelay);
         }
     }
 }

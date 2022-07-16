@@ -13,7 +13,7 @@ public class UnloadLogic : MonoBehaviour
 
     private void Start()
     {
-        _moneyUI.SetGameData(_gameData);
+        _moneyUI.Init(_gameData);
     }
     public void AddBlock(PlantBlockLogic plantBlock) 
     {
@@ -26,11 +26,11 @@ public class UnloadLogic : MonoBehaviour
         PlantBlockLogic plantBlock = _plantBlocks.Dequeue();
         plantBlock.OnAnimationComplete -= RemoveBlock;
         Destroy(plantBlock.gameObject);
-        _moneyUI.ChangeMoney();
+        _moneyUI.CoinSpawner.ShowCoin();
     }
 
     public void ResetAnimation() 
     {
-        _moneyUI.ResetCoins();
+        _moneyUI.ResetUI();
     }
 }

@@ -9,6 +9,9 @@ public class PlantLogic : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [Space]
     [SerializeField] private GardenData _gardenData;
+    [Space]
+    [SerializeField] private ParticleSystem _particleSystem;
+    
 
     private bool _isReady;
 
@@ -34,6 +37,7 @@ public class PlantLogic : MonoBehaviour
     }
     private void Cut() 
     {
+        _particleSystem.Play();
         _isReady = false;
         _plants.localScale = new Vector3(1, _gardenData.MinScaleY, 1);
         Grow();

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _money: 0
   _maxStack: 40
+  _lineLength: 4
+  _unloadDelay: 0.1
   _blockPrice: 15
